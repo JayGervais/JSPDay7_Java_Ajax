@@ -31,19 +31,20 @@ import model.Customer;
 
 
 @Path("/customer")
-public class CustomerRestService 
+public class TravelExpertsRestService 
 {
-	private static final Logger logger = Logger.getLogger(CustomerRestService.class);
+	private static final Logger logger = Logger.getLogger(TravelExpertsRestService.class);
 	
 	
-	// (localhost) http://192.168.44.1:9090/TravelExpertsREST/rs/customer/getallcustomers
-	// 192.168.0.15:9090/JSPDay7/rs/customer/getallcustomers
+	// http://10.187.133.64:9090/TravelExpertsREST/rs/customer/getallcustomers
+	// http://192.168.137.1:9090/TravelExpertsREST/rs/customer/getallcustomers
 	@GET
 	@Path("/getallcustomers")
     @Produces(MediaType.APPLICATION_JSON)
 	public String getAllCustomers(@QueryParam("request") String request ,
 			 @DefaultValue("1") @QueryParam("version") int version) 
 	{
+	
 		if (logger.isDebugEnabled()) {
 			logger.debug("Start getAllCustomers");
 			logger.debug("data: '" + request + "'");
@@ -71,11 +72,11 @@ public class CustomerRestService
             logger.debug("End getAllCustomers");
         }
         // add code here to call JPA object
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JSPDay7");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExpertsREST");
         EntityManager em = factory.createEntityManager();
         
         Query query = em.createQuery("select a from Customer a");
-        List<Customer> list = query.getResultList();
+        List<Customer> list = (List<Customer>) query.getResultList();
         Gson gson = new Gson();
         Type type = new TypeToken<List<Customer>>() {}.getType();
         
@@ -126,7 +127,7 @@ public class CustomerRestService
         }
         
         // add code here to call JPA object
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JSPDay7");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExpertsREST");
         EntityManager em = factory.createEntityManager();
         
         Customer c = em.find(Customer.class, customerId);
@@ -184,7 +185,7 @@ public class CustomerRestService
             logger.debug("End postCustomer");
         }
         // add code here to call JPA object
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JSPDay7");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExpertsREST");
         EntityManager em = factory.createEntityManager();
 
         Gson gson = new Gson();
@@ -222,7 +223,7 @@ public class CustomerRestService
 	public String putCustomer(String jsonString) 
 	{
         // add code here to call JPA object
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JSPDay7");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExpertsREST");
         EntityManager em = factory.createEntityManager();
 
         Gson gson = new Gson();
@@ -283,7 +284,7 @@ public class CustomerRestService
         }
         
         // add code here to call JPA object
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JSPDay7");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExpertsREST");
         EntityManager em = factory.createEntityManager();
 
         Customer findCustomer = em.find(Customer.class, customerId);

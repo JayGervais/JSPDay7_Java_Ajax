@@ -19,7 +19,7 @@ function insertCustomer(customerform)
 					'", "custPostal":"' + customerform.custPostal + 
 					'", "custProv":"' + customerform.custProv + '"}';
 		$.ajax({
-			url:"http://192.168.44.1:9090/TravelExpertsREST/rs/customer/putcustomer",
+			url:"http://192.168.137.1:9090/TravelExpertsREST/rs/customer/putcustomer",
 			type:"PUT",
 			data:data,
 			contentType:"application/json",

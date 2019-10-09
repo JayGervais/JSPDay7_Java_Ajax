@@ -6,12 +6,13 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
  
 
-public class CustomerRestServiceApplication  extends Application {
+public class AgentRestServiceApplication  extends Application {
 	
 	private Set<Object> singletons = new HashSet<Object>();
 	 
-	public CustomerRestServiceApplication() {
-		singletons.add(new CustomerRestService());
+	public AgentRestServiceApplication() {
+		singletons.add(new AgentRestService());
+		singletons.add(new TravelExpertsRestService());
 	}
  
 	@Override
