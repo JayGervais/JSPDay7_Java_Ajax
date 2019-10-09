@@ -36,7 +36,7 @@ public class CustomerRestService
 	private static final Logger logger = Logger.getLogger(CustomerRestService.class);
 	
 	
-	// (localhost) http://10.187.133.64:9090/JSPDay7/rs/customer/getallcustomers
+	// (localhost) http://192.168.44.1:9090/TravelExpertsREST/rs/customer/getallcustomers
 	// 192.168.0.15:9090/JSPDay7/rs/customer/getallcustomers
 	@GET
 	@Path("/getallcustomers")
@@ -89,7 +89,7 @@ public class CustomerRestService
 	}
 	
 
-	// (localhost) http://10.187.133.64:9090/JSPDay7/rs/customer/getcustomer/{customerid} - 108
+	// (localhost) http://192.168.44.1:9090/TravelExpertsREST/rs/customer/getcustomer/{customerid} - 108
 	// 192.168.0.15:9090/JSPDay7/rs/customer/getcustomer/
 	@GET
 	@Path("/getcustomer/{customerid}")
@@ -148,7 +148,7 @@ public class CustomerRestService
 	
 
 	// (localhost) used for updating
-	// http://10.187.133.64:9090/JSPDay7/rs/customer/postcustomer
+	// http://192.168.44.1:9090/TravelExpertsREST/rs/customer/postcustomer
 	@POST
 	@Path("/postcustomer")
     @Produces(MediaType.TEXT_PLAIN)
@@ -214,7 +214,7 @@ public class CustomerRestService
 
 	
 	// (localhost) 
-	// http://10.187.133.64:9090/JSPDay7/rs/customer/putcustomer
+	// http://192.168.44.1:9090/TravelExpertsREST/rs/customer/putcustomer
 	@PUT
 	@Path("/putcustomer")
     @Produces(MediaType.TEXT_PLAIN)
@@ -252,7 +252,7 @@ public class CustomerRestService
         return response;	
 	}
 
-	// (localhost) http://10.187.133.64:9090/JSPDay7/rs/customer/deletecustomer/{customerid}
+	// (localhost) http://192.168.44.1:9090/TravelExpertsREST/rs/customer/deletecustomer/{customerid}
 	@DELETE
 	@Path("/deletecustomer/{customerid}")
 	public String deleteCustomer(@PathParam("customerid") int customerId,

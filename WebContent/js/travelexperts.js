@@ -3,22 +3,23 @@
  * Jay Gervais, 2019
  */
 
-function insertCustomer(myform)
+// insert customer function
+function insertCustomer(customerform)
 	{
-		var data = '{"agentId":"' + myform.agentId + 
-					'", "custAddress":"' + myform.custAddress + 
-					'", "custBusPhone":"' + myform.custBusPhone + 
-					'", "custCity":"' + myform.custCity + 
-					'", "custCountry":"' + myform.custCountry + 
-					'", "custEmail":"' + myform.custEmail + 
-					'", "custFirstName":"' + myform.custFirstName + 
-					'", "custHomePhone":"' + myform.custHomePhone + 
-					'", "custLastName":"' + myform.custLastName + 
-					'", "custPassword":"' + myform.custPassword + 
-					'", "custPostal":"' + myform.custPostal + 
-					'", "custProv":"' + myform.custProv + '"}';
+		var data = '{"agentId":"' + customerform.agentId + 
+					'", "custAddress":"' + customerform.custAddress + 
+					'", "custBusPhone":"' + customerform.custBusPhone + 
+					'", "custCity":"' + customerform.custCity + 
+					'", "custCountry":"' + customerform.custCountry + 
+					'", "custEmail":"' + customerform.custEmail + 
+					'", "custFirstName":"' + customerform.custFirstName + 
+					'", "custHomePhone":"' + customerform.custHomePhone + 
+					'", "custLastName":"' + customerform.custLastName + 
+					'", "custPassword":"' + customerform.custPassword + 
+					'", "custPostal":"' + customerform.custPostal + 
+					'", "custProv":"' + customerform.custProv + '"}';
 		$.ajax({
-			url:"/JSPDay7/rs/customer/putcustomer",
+			url:"http://192.168.44.1:9090/TravelExpertsREST/rs/customer/putcustomer",
 			type:"PUT",
 			data:data,
 			contentType:"application/json",
