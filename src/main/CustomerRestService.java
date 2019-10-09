@@ -37,6 +37,7 @@ public class CustomerRestService
 	
 	
 	// (localhost) http://10.187.133.64:9090/JSPDay7/rs/customer/getallcustomers
+	// 192.168.0.15:9090/JSPDay7/rs/customer/getallcustomers
 	@GET
 	@Path("/getallcustomers")
     @Produces(MediaType.APPLICATION_JSON)
@@ -89,6 +90,7 @@ public class CustomerRestService
 	
 
 	// (localhost) http://10.187.133.64:9090/JSPDay7/rs/customer/getcustomer/{customerid} - 108
+	// 192.168.0.15:9090/JSPDay7/rs/customer/getcustomer/
 	@GET
 	@Path("/getcustomer/{customerid}")
     @Produces(MediaType.APPLICATION_JSON)

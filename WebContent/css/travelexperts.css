@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+
+header.bg-primary.text-white.bg-img {
+	background-image: url("../images/beach_above.jpg");
+  	background-attachment: fixed;
+  	background-position: center;
+  	background-repeat: no-repeat;
+}
+
+h1.t-shadow {
+	text-shadow: 2px 2px 6px #000;
+	t
+}
