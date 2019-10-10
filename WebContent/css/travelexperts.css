@@ -63,3 +63,19 @@ h1.t-shadow {
 .card {
 	margin-bottom: 15px !important;
 }
+
+#bookinglist li{
+	display:none; 
+	list-style-type: none;
+}
+#loadMore {
+    color:#fff;
+    cursor:pointer;
+}
+#loadMore:hover {
+    color:#fff;
+}
+
+.li-show {
+	display: list-item !important;
+}

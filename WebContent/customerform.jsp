@@ -56,7 +56,7 @@
 	</div>
 	
 	<div class="form-group">
-		<button onclick="insertCustomer(this.form)">Add Customer</button>
+		<button onclick="insertCustomer(this.form)" class="btn btn-primary">Add Customer</button>
 	</div>
 			
 </form>

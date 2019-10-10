@@ -1,6 +1,13 @@
 <!-- jsp header -->
 <jsp:include page="header.jsp" />
 
+<script>
+	window.onload = function WindowLoad(event) {
+		getAgents();
+		loadBookings();	
+	}
+</script>
+
 <header class="bg-primary text-white bg-img">
     <div class="container text-center">
       <h1 class="t-shadow"></h1>
@@ -14,11 +21,7 @@
         <div class="col-lg-8 mx-auto">
           <h2>Agent Directory</h2>
           <p class="lead">See who's planning the next adventures</p>
-          	<div class="row" id="row">
-          	
-          		<div id="agentCard"></div>
-          		
-		    </div>
+          	<div class="row" id="row"></div>
         </div>
       </div>
     </div>
@@ -28,9 +31,18 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>Bookings</h2>
-          <p class="lead"></p>
-          	<ul class="list-group" id="bookinglist"></ul>   	
+        
+	        	<h2>Bookings</h2>
+	        	<p class="lead">An account overview</p>
+				<div class="card bg-light">
+				  <div class="card-body">
+				    <h5 class="card-title">Booking Overview</h5>
+				    <p class="card-text" id="bookingdetails"></p>
+				  </div>
+				</div>
+				<ul class="list-group" id="bookinglist"></ul>
+	          	<button class="btn btn-primary" id="loadMore">View Bookings</button> 	
+
         </div>
       </div>
     </div>

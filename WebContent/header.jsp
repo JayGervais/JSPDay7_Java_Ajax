@@ -19,16 +19,12 @@
   <!-- Custom styles for this template -->
   <link href="css/scrolling-nav.css" rel="stylesheet">
   <link href="css/travelexperts.css" rel="stylesheet">
+  
+  <script src="js/jquery.js"></script>
 
 </head>
 
 <body id="page-top">
-<script>
-	window.onload = function WindowLoad(event) {
-		getAgents();
-	    loadBookings();
-	}
-</script>
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
