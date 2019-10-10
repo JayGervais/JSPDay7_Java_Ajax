@@ -22,34 +22,27 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="getAgents()">
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Travel Experts</a> <span class="text-white">Where the Adventure Begins...</span>
+      <a class="navbar-brand js-scroll-trigger" href="http://localhost:9090/TravelExpertsREST/#page-top">Travel Experts</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">New Customer</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:9090/TravelExpertsREST/#agent">Agent Directory</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Agent Directory</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:9090/TravelExpertsREST/#customer">Customers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:9090/TravelExpertsREST/#next">Contact</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-
-  <header class="bg-primary text-white bg-img">
-    <div class="container text-center">
-      <h1 class="t-shadow">The Travel Awaits</h1>
-      <p class="lead"></p>
-    </div>
-  </header>

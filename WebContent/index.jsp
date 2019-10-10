@@ -1,7 +1,30 @@
 <!-- jsp header -->
 <jsp:include page="header.jsp" />
 
-  <section id="about">
+<header class="bg-primary text-white bg-img">
+    <div class="container text-center">
+      <h1 class="t-shadow"></h1>
+      <p class="lead"></p>
+    </div>
+ </header>
+
+  <section id="agent">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Agent Directory</h2>
+          <p class="lead">See who's planning the next adventures</p>
+          	<div class="row" id="row">
+          	
+          		<div id="agentCard"></div>
+          		
+		    </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="customer" class="bg-light">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -9,34 +32,13 @@
           <p class="lead"></p>
           
           <jsp:include page="customerform.jsp" />
-		  
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section id="services" class="bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>Agent Directory</h2>
-          <p class="lead">See who's planning the next adventures</p>
-          
-          <div class="card" style="width: 18rem;">
-  			<img src="..." class="card-img-top" alt="...">
-  			<div class="card-body">
-    		<h5 class="card-title">Card title</h5>
-    		<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    		<a href="#" class="btn btn-primary">Go somewhere</a>
-  			</div>
-		  </div>
-          
+		   
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
+  <section id="next">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -48,4 +50,4 @@
   </section>
   
 <!-- jsp footer -->
-  <jsp:include page="footer.jsp" />
+<jsp:include page="footer.jsp" />

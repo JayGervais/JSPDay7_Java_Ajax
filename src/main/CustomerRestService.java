@@ -31,9 +31,9 @@ import model.Customer;
 
 
 @Path("/customer")
-public class TravelExpertsRestService 
+public class CustomerRestService 
 {
-	private static final Logger logger = Logger.getLogger(TravelExpertsRestService.class);
+	private static final Logger logger = Logger.getLogger(CustomerRestService.class);
 	
 	
 	// http://10.187.133.64:9090/TravelExpertsREST/rs/customer/getallcustomers

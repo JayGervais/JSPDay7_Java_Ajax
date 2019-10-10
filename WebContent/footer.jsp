@@ -10,12 +10,11 @@
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.js"></script>
 
-  <!-- Plugin JavaScript -->
+  <!-- Website JavaScript -->
   <script src="js/jquery.easing.js"></script>
-
-  <!-- Custom JavaScript for this theme -->
   <script src="js/scrolling-nav.js"></script>
   <script src="js/travelexperts.js"></script>
+  <script src="js/ajax-travelexperts.js"></script>
 
 </body>
 </html>
