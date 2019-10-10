@@ -24,7 +24,19 @@
     </div>
   </section>
   
-  <section id="customer" class="bg-light">
+  <section id="bookings" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Bookings</h2>
+          <p class="lead"></p>
+          	<ul class="list-group" id="bookinglist"></ul>   	
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="customer">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -38,7 +50,7 @@
     </div>
   </section>
 
-  <section id="next">
+  <section id="next" class="bg-light">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">

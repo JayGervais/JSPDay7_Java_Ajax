@@ -22,7 +22,13 @@
 
 </head>
 
-<body id="page-top" onload="getAgents()">
+<body id="page-top">
+<script>
+	window.onload = function WindowLoad(event) {
+		getAgents();
+	    loadBookings();
+	}
+</script>
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -35,6 +41,9 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="http://localhost:9090/TravelExpertsREST/#agent">Agent Directory</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="http://localhost:9090/TravelExpertsREST/#bookings">Bookings</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="http://localhost:9090/TravelExpertsREST/#customer">Customers</a>

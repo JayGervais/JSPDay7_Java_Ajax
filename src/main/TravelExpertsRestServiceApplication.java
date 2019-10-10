@@ -13,6 +13,7 @@ public class TravelExpertsRestServiceApplication  extends Application {
 	public TravelExpertsRestServiceApplication() {
 		singletons.add(new AgentRestService());
 		singletons.add(new CustomerRestService());
+		singletons.add(new BookingRestService());
 	}
  
 	@Override

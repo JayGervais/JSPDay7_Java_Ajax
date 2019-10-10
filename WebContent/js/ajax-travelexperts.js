@@ -106,3 +106,30 @@ function loadSingleAgent(agentId)
 	req.open("GET", "/TravelExpertsREST/rs/agent/getagent/" + agentId, true);
 	req.send();
 }
+
+function loadBookings()
+{
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function()
+	{
+		if (req.readyState == 4 && req.status == 200)
+		{
+			var bookingArray = JSON.parse(req.responseText);
+			var bookingList = document.getElementById("bookinglist");
+			
+			for (i=0; i<bookingArray.length; i++)
+			{
+				var booking = bookingArray[i];
+				
+				var list = document.createElement("li");
+				list.setAttribute("class", "list-group-item");
+				bookingList.appendChild(list);
+				
+				list.innerHTML = booking.bookingDetailId + ": " + booking.destination 
+										+ "<br />Base: " + booking.basePrice + " / Comission: " + booking.agencyCommission;
+			}
+		}
+	};
+	req.open("GET", "/TravelExpertsREST/rs/booking/getbookingdetails", true);
+	req.send();
+}
