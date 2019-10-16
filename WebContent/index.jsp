@@ -42,7 +42,6 @@
 				</div>
 				<ul class="list-group" id="bookinglist"></ul>
 	          	<button class="btn btn-primary" id="loadMore">View Bookings</button> 	
-
         </div>
       </div>
     </div>

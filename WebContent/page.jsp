@@ -8,6 +8,13 @@
  </header>
 
 <div class="container pt-5 mb-5">
+<button type="button" class="btn btn-light shaded" onclick="goBack()">Go Back</button>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+
 	<div class="card bg-light">
 	  <div class="card-body">
 	    <h5 class="card-title" id="title"></h5>
@@ -22,7 +29,9 @@ window.onload = function WindowLoad(event) {
     var bookingId = url.searchParams.get("bookingId");
     var agentId = url.searchParams.get("agentId");
 
-	loadSingleAgent(agentId);
+    if (agentId != null)
+    {
+		loadSingleAgent(agentId);
 	}
 	else
 	{

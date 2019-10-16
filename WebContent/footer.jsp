@@ -7,7 +7,7 @@
   </footer>
   <script>
   $(document).ready(function () {      
-    x=5;
+    x=3;
     $('#bookinglist li').slice(0, 5).show(); 
   	  $('#loadMore').on('click', function (e) {
           e.preventDefault();

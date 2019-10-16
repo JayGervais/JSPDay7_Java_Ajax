@@ -75,7 +75,7 @@ function getAgents()
 				agtbutton.setAttribute("class", "btn btn-primary text-white");
 				cardbody.appendChild(agtbutton);
 				agtbutton.innerHTML = "View Agent";
-				agtbutton.href = "/TravelExpertsREST/agent.jsp?agentId=" + agent.agentId;
+				agtbutton.href = "/TravelExpertsREST/page.jsp?agentId=" + agent.agentId;
 			}
 		}
 	};
@@ -92,8 +92,8 @@ function loadSingleAgent(agentId)
 		{
 			var agent = JSON.parse(req.responseText);
 			
-			var title = document.getElementById("agenttitle");
-			var details = document.getElementById("agentdetails");	
+			var title = document.getElementById("title");
+			var details = document.getElementById("details");	
 			
 			title.innerHTML = agent.agtFirstName + " " + 
 			  				  agent.agtMiddleInitial + " " + 
@@ -123,7 +123,7 @@ function loadBookings()
 			var commissionSum = 0;
 			
 			for (i=0; i<bookingArray.length; i++)
-			{		
+			{	
 				var booking = bookingArray[i];
 				
 				var list = document.createElement("li");
@@ -132,12 +132,10 @@ function loadBookings()
 				
 				list.innerHTML = booking.booking.bookingDate.split(' ').slice(0, 3).join(' ').replace(/,\s*$/, "") + ": " + 
 								 booking.destination + "<br />Base: $" + 
-								 "<div class='float-right book-link'><a href='' id='book-url'>View Details ></a></div>" +
+								 "<div class='float-right'><a href='/TravelExpertsREST/page.jsp?bookingId=" + booking.booking.bookingId + "' " +
+								 		"+ id='book-url'>View Details ></a></div>" +
 								 booking.basePrice.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + " / Comission: $" + 
 								 booking.agencyCommission.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-				
-				var bookurl = document.getElementById("book-url");
-				bookurl.href = "/TravelExpertsREST/agent.jsp?bookingId=" + booking.booking.bookingId;
 				
 				bookingSum += parseInt(booking.basePrice);
 				var baseTotal = bookingSum.toFixed(2);
@@ -153,3 +151,86 @@ function loadBookings()
 	req.open("GET", "/TravelExpertsREST/rs/booking/getbookingdetails", true);
 	req.send();
 }
+
+function loadSingleBooking(bookingId)
+{
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function()
+	{
+		if (req.readyState == 4 && req.status == 200)
+		{
+			var bookingArray = JSON.parse(req.responseText);
+			
+			var title = document.getElementById("title");
+			var details = document.getElementById("details");	
+			
+			for (i=0; i<bookingArray.length; i++)
+			{	
+				var booking = bookingArray[i];
+				
+				getCustomer(booking.booking.customerId);
+					
+				details.innerHTML = "<table class='table'><tbody>" + 
+									"<tr>" +
+									"<td>Destination:</td>" +
+									"<td>" + booking.destination + "</td>" +
+									"</tr>" +
+									"<tr>" +
+									"<td>Description:</td>" +
+									"<td>" + booking.description + "</td>" +
+									"</tr>" +									
+									"<tr>" +
+									"<td>Purchase Date:</td>" +
+									"<td>" + booking.booking.bookingDate.split(' ').slice(0, 3).join(' ').replace(/,\s*$/, "") + "</td>" +
+									"</tr>" +									
+									"<tr>" +
+									"<td>Booking Number:</td>" +
+									"<td>" + booking.booking.bookingNo  + "</td>" +
+									"</tr>" +								
+									"<tr>" +
+									"<td>Travelers:</td>" +
+									"<td>" + booking.booking.travelerCount + "</td>" +
+									"</tr>" +									
+									"<tr>" +
+									"<td>Start Date:</td>" +
+									"<td>" + booking.tripStart.split(' ').slice(0, 3).join(' ').replace(/,\s*$/, "") + "</td>" +
+									"</tr>" +									
+									"<tr>" +
+									"<td>End Date:</td>" +
+									"<td>Trip End Date: " + booking.tripEnd.split(' ').slice(0, 3).join(' ').replace(/,\s*$/, "") + "</td>" +
+									"</tr>" +									
+									"<tr>" +
+									"<td>Base Price:</td>" +
+									"<td>$" + booking.basePrice.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + "</td>" +
+									"</tr>" +									
+									"<tr>" +
+									"<td>Commission:</td>" +
+									"<td>$" + booking.agencyCommission.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + "</td>" +
+									"</tr>" +
+									"</tbody></table>";
+			}
+		}
+	};
+	req.open("GET", "/TravelExpertsREST/rs/booking/getbooking/" + bookingId, true);
+	req.send();
+}
+
+function getCustomer(customerId)
+{
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function()
+	{
+		if (req.readyState == 4 && req.status == 200)
+		{
+			var customer = JSON.parse(req.responseText);
+			title.innerHTML = customer.custFirstName + " " + customer.custLastName + ", " +
+							  customer.custCity + ", " + customer.custProv + 
+							  "<div class='float-right'><a href='/TravelExpertsREST/page.jsp?customerId=" + customer.customerId + "' " +
+						 		"+ id='book-url'>Customer Details ></a></div>"; 
+		}
+	};
+	req.open("GET", "/TravelExpertsREST/rs/customer/getcustomer/" + customerId, true);
+	req.send();
+}
+
+
