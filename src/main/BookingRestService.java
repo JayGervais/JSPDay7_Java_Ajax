@@ -70,7 +70,7 @@ public class BookingRestService {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExpertsREST");
         EntityManager em = factory.createEntityManager();
         
-        Query query = em.createQuery("select b from Booking b");
+        Query query = em.createQuery("select b from Booking b order by b.bookingDate desc");
         
         List<Booking> list = (List<Booking>) query.getResultList();
         Gson gson = new Gson();

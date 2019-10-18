@@ -35,13 +35,16 @@
 	        	<h2>Bookings</h2>
 	        	<p class="lead">An account overview</p>
 				<div class="card bg-light">
-				  <div class="card-body">
-				    <h5 class="card-title">Booking Overview</h5>
-				    <p class="card-text" id="bookingdetails"></p>
-				  </div>
+					<div class="card-header">
+						<h5 class="card-title">Booking Totals</h5>
+					</div>
+				 	<div class="card-body">
+				    	<p class="card-text" id="bookingdetails"></p>
+				  	</div>
 				</div>
 				<ul class="list-group" id="bookinglist"></ul>
-	          	<button class="btn btn-primary" id="loadMore">View Bookings</button> 	
+	          	<button class="btn btn-primary" id="loadMore">View Recent Bookings</button>
+	          	<button onclick="window.location='page.jsp?bookings=1'" class="btn btn-secondary" id="viewallbookings">View All Bookings</button> 	
         </div>
       </div>
     </div>
@@ -51,22 +54,22 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>Add a new Customer to the account</h2>
+          <h2>Customers</h2>
           <p class="lead"></p>
           
-          <jsp:include page="customerform.jsp" />
-		   
+          <!--<jsp:include page="customerform.jsp" />-->
+		   <button onclick="window.location='addcustomer.jsp'" class="btn btn-primary">Add New Customer</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="next" class="bg-light">
+  <section id="contact" class="bg-light">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>Contact us</h2>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+          <h2>About</h2>
+          <p class="lead">Travel Experts Software Service created by Jay, Tea, Cailan, and Harpreet for SAIT's OOSD program.</p>
         </div>
       </div>
     </div>

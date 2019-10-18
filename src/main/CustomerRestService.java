@@ -75,7 +75,7 @@ public class CustomerRestService
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExpertsREST");
         EntityManager em = factory.createEntityManager();
         
-        Query query = em.createQuery("select a from Customer a");
+        Query query = em.createQuery("select a from Customer a order by a.custFirstName");
         List<Customer> list = (List<Customer>) query.getResultList();
         Gson gson = new Gson();
         Type type = new TypeToken<List<Customer>>() {}.getType();

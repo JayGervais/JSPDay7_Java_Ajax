@@ -14,12 +14,15 @@ function goBack() {
   window.history.back();
 }
 </script>
+<h1 id="pagetitle"></h1>
 
 	<div class="card bg-light">
-	  <div class="card-body">
-	    <h5 class="card-title" id="title"></h5>
-	    <p class="card-text" id="details"></p>
-	  </div>
+		<div class="card-header">
+			<h5 class="card-title" id="title"></h5>
+		</div> 
+	  	<div class="card-body" id="card-body">
+	    	<p class="card-text" id="details"></p>
+	  	</div>
 	</div>
 </div>
 <script>
@@ -28,16 +31,25 @@ window.onload = function WindowLoad(event) {
     var url = new URL(url_string);
     var bookingId = url.searchParams.get("bookingId");
     var agentId = url.searchParams.get("agentId");
+    var customerId = url.searchParams.get("customerId");
+    var bookings = url.searchParams.get("bookings");
 
     if (agentId != null)
     {
 		loadSingleAgent(agentId);
 	}
-	else
+    if (bookingId != null)
 	{
 		loadSingleBooking(bookingId);
 	}
-    
+    if (customerId != null)
+	{
+		loadCustomerDetails(customerId);
+	}
+    if (bookings != null)
+	{
+    	loadBookingList();
+	}  
 }
 </script>
 

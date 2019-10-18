@@ -25,72 +25,25 @@ import org.apache.log4j.Logger;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import model.Agency;
 import model.Agent;
 
 
-@Path("/agent")
-public class AgentRestService {
+@Path("/agency")
+public class AgencyRestService {
 
-	private static final Logger logger = Logger.getLogger(AgentRestService.class);
+	private static final Logger logger = Logger.getLogger(AgencyRestService.class);
 
-	// http://10.187.133.64:9090/TravelExpertsREST/rs/agent/getallagents
-	// http://192.168.137.1:9090/TravelExpertsREST/rs/agent/getallagents
 	@GET
-	@Path("/getallagents")
+	@Path("/getagency/{agencyid}")
     @Produces(MediaType.APPLICATION_JSON)
-	public String getAllAgents(@QueryParam("request") String request ,
-			 @DefaultValue("1") @QueryParam("version") int version) 
-	{
-		if (logger.isDebugEnabled()) {
-			logger.debug("Start getAllAgents");
-			logger.debug("data: '" + request + "'");
-			logger.debug("version: '" + version + "'");
-		}
-
-		String response = null;
-
-        try{			
-            switch(version){
-	            case 1:
-	                if(logger.isDebugEnabled()) logger.debug("in version 1");
-	                
-	                response = "Response from RESTEasy Restful Webservice : " + request;
-                    break;
-                default: throw new Exception("Unsupported version: " + version);
-            }
-        }
-        catch(Exception e){
-        	response = e.getMessage().toString();
-        }
-        
-        if(logger.isDebugEnabled()){
-            logger.debug("result: '"+response+"'");
-            logger.debug("End getAllAgents");
-        }
-        // add code here to call JPA object
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExpertsREST");
-        EntityManager em = factory.createEntityManager();
-        
-        Query query = em.createQuery("select a from Agent a order by a.agtFirstName");
-        List<Agent> list = query.getResultList();
-        Gson gson = new Gson();
-        Type type = new TypeToken<List<Agent>>() {}.getType();
-        
-        //---
-        em.close();
-        factory.close();
-        return gson.toJson(list, type);
-	}
-	
-	@GET
-	@Path("/getagent/{agentid}")
-    @Produces(MediaType.APPLICATION_JSON)
-	public String getAgent(@QueryParam("request") String request ,
+	public String getSomething(@QueryParam("request") String request ,
 			 @DefaultValue("1") @QueryParam("version") int version,
-			 @PathParam("agentid") int agentId) 
+			 @PathParam("agencyid") int agencyId) 
 	{
+
 		if (logger.isDebugEnabled()) {
-			logger.debug("Start getAgent");
+			logger.debug("Start getAgency");
 			logger.debug("data: '" + request + "'");
 			logger.debug("version: '" + version + "'");
 		}
@@ -101,7 +54,7 @@ public class AgentRestService {
             switch(version){
 	            case 1:
 	                if(logger.isDebugEnabled()) logger.debug("in version 1");
-	                
+
 	                response = "Response from RESTEasy Restful Webservice : " + request;
                     break;
                 default: throw new Exception("Unsupported version: " + version);
@@ -113,16 +66,16 @@ public class AgentRestService {
         
         if(logger.isDebugEnabled()){
             logger.debug("result: '"+response+"'");
-            logger.debug("End getAgent");
+            logger.debug("End getSomething");
         }
         // add code here to call JPA object
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExpertsREST");
         EntityManager em = factory.createEntityManager();
         
         // Query query = em.createQuery("select a from Agent a where a.agentId=" + agentId);
-        Agent a = em.find(Agent.class, agentId);
+        Agency a = em.find(Agency.class, agencyId);
         Gson gson = new Gson();
-        Type type = new TypeToken<Agent>() {}.getType();
+        Type type = new TypeToken<Agency>() {}.getType();
         response = gson.toJson(a, type);
         
         em.close();

@@ -71,6 +71,7 @@ h1.t-shadow {
 #loadMore {
     color:#fff;
     cursor:pointer;
+    margin-right: 20px;
 }
 #loadMore:hover {
     color:#fff;
@@ -78,4 +79,25 @@ h1.t-shadow {
 
 .li-show {
 	display: list-item !important;
+}
+
+h5.card-title {
+	padding-top: 10px;
+}
+
+button.btn.btn-light.shaded {
+	margin-top: -60px;
+	border: 1px solid #0d9a84;
+}
+
+h1#pagetitle {
+	text-align: right;
+	margin-top: -70px;
+}
+
+@media (max-width: 768px) {
+	h1#pagetitle {
+	text-align: left;
+	margin-top: -5px;
+}
 }

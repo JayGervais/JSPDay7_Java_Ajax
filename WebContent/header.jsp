@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="google" content="notranslate">
+<!--  <meta http-equiv="Content-Language" content="en">-->
 <title>Travel Experts</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/scrolling-nav.css">
@@ -45,7 +47,7 @@
             <a class="nav-link js-scroll-trigger" href="/TravelExpertsREST/#customer">Customers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/TravelExpertsREST/#next">Contact</a>
+            <a class="nav-link js-scroll-trigger" href="/TravelExpertsREST/#contact">About</a>
           </li>
         </ul>
       </div>

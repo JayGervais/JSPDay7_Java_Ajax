@@ -15,6 +15,7 @@
           $('#bookinglist li').slice(0, x).slideDown();
           $('#loadMore').html('Load More');
           $('#loadMore').css('margin-top', '15px');
+          $('#viewallbookings').css('margin-top', '15px');
       });
   });
   </script>
