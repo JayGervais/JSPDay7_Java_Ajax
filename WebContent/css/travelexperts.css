@@ -99,5 +99,9 @@ h1#pagetitle {
 	h1#pagetitle {
 	text-align: left;
 	margin-top: -5px;
+	}
 }
+
+.date {
+	opacity: 0.8;
 }
