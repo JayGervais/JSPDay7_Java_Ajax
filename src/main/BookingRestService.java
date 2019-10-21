@@ -184,6 +184,61 @@ public class BookingRestService {
         return response;	
 	}
 	
+	@GET
+	@Path("/getcustomerbooking/{customerid}")
+    @Produces(MediaType.APPLICATION_JSON)
+	public String getCustomerBooking(@QueryParam("request") String request ,
+			 @DefaultValue("1") @QueryParam("version") int version,
+			 @PathParam("customerid") int customerId) 
+	{
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("Start getCustomerBooking");
+			logger.debug("data: '" + request + "'");
+			logger.debug("version: '" + version + "'");
+		}
+
+		String response = null;
+
+        try{			
+            switch(version){
+	            case 1:
+	                if(logger.isDebugEnabled()) logger.debug("in version 1");
+
+	                response = "Response from RESTEasy Restful Webservice : " + request;
+                    break;
+                default: throw new Exception("Unsupported version: " + version);
+            }
+        }
+        catch(Exception e){
+        	response = e.getMessage().toString();
+        }
+        
+        if(logger.isDebugEnabled()){
+            logger.debug("result: '"+response+"'");
+            logger.debug("End getBooking");
+        }
+        // add code here to call JPA object
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExpertsREST");
+        EntityManager em = factory.createEntityManager();
+        
+        Query query = em.createQuery("select b from Booking b where b.customerId=" + customerId);
+        
+        List<Booking> list = (List<Booking>) query.getResultList();
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Booking>>() {}.getType();
+        response = gson.toJson(list, type);
+        
+        //---
+        em.close();
+        factory.close();
+        return response;	
+	}
+	
+	
+	
+	
+	
 	
 	
 	

@@ -15,8 +15,8 @@ public class Agent implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private int agentId;
-	private int agencyId;
+	private Integer agentId;
+	private Integer agencyId;
 	private String agtBusPhone;
 	private String agtEmail;
 	private String agtFirstName;

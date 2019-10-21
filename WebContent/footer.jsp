@@ -28,7 +28,10 @@
   <script src="js/jquery.easing.js"></script>
   <script src="js/scrolling-nav.js"></script>
   <script src="js/travelexperts.js"></script>
-  <script src="js/ajax-travelexperts.js"></script>
+  <script src="js/ajax-agency.js"></script>
+  <script src="js/ajax-agents.js"></script>
+  <script src="js/ajax-bookings.js"></script>
+  <script src="js/ajax-customers.js"></script>
   
 </body>
 </html>

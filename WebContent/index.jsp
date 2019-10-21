@@ -5,6 +5,7 @@
 	window.onload = function WindowLoad(event) {
 		getAgents();
 		loadBookings();	
+		customerCard();
 	}
 </script>
 
@@ -55,10 +56,19 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <h2>Customers</h2>
-          <p class="lead"></p>
+          <p class="lead">Those taking adventures</p>
+          	<div class="card bg-light">
+				<div class="card-header">
+					<h5 class="card-title">Customer Summary</h5>
+				</div>
+			 	<div class="card-body">
+			    	<p class="card-text" id="customerdetails"></p>
+			  	</div>
+			</div>
           
           <!--<jsp:include page="customerform.jsp" />-->
-		   <button onclick="window.location='addcustomer.jsp'" class="btn btn-primary">Add New Customer</button>
+		   <button onclick="window.location='page.jsp?customers=1'" class="btn btn-primary" id="viewallcustomers">View All Customers</button>
+		   <button onclick="window.location='addcustomer.jsp'" class="btn btn-secondary">Add New Customer</button>
         </div>
       </div>
     </div>

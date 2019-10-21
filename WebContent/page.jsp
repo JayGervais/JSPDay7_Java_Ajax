@@ -17,7 +17,7 @@ function goBack() {
 <h1 id="pagetitle"></h1>
 
 	<div class="card bg-light">
-		<div class="card-header">
+		<div class="card-header" id="card">
 			<h5 class="card-title" id="title"></h5>
 		</div> 
 	  	<div class="card-body" id="card-body">
@@ -30,9 +30,10 @@ window.onload = function WindowLoad(event) {
 	var url_string = window.location.href;
     var url = new URL(url_string);
     var bookingId = url.searchParams.get("bookingId");
+    var bookings = url.searchParams.get("bookings");
     var agentId = url.searchParams.get("agentId");
     var customerId = url.searchParams.get("customerId");
-    var bookings = url.searchParams.get("bookings");
+    var customers = url.searchParams.get("customers");
 
     if (agentId != null)
     {
@@ -42,14 +43,19 @@ window.onload = function WindowLoad(event) {
 	{
 		loadSingleBooking(bookingId);
 	}
-    if (customerId != null)
-	{
-		loadCustomerDetails(customerId);
-	}
     if (bookings != null)
 	{
     	loadBookingList();
 	}  
+    if (customerId != null)
+	{
+		loadCustomerDetails(customerId);
+	}
+    if (customers != null)
+	{
+		loadCustomerList();
+	}
+    
 }
 </script>
 
