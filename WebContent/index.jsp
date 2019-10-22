@@ -65,8 +65,6 @@
 			    	<p class="card-text" id="customerdetails"></p>
 			  	</div>
 			</div>
-          
-          <!--<jsp:include page="customerform.jsp" />-->
 		   <button onclick="window.location='page.jsp?customers=1'" class="btn btn-primary" id="viewallcustomers">View All Customers</button>
 		   <button onclick="window.location='addcustomer.jsp'" class="btn btn-secondary">Add New Customer</button>
         </div>

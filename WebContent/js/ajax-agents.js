@@ -7,6 +7,32 @@
 	// Agent GET
 // ---------------------------------------------------------------------------------------------- //
 
+// agent drop down
+function selectAgentDropdown()
+{
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function()
+	{
+		if (req.readyState == 4 && req.status == 200)
+		{
+			var agentArray = JSON.parse(req.responseText);			
+			var agentSelect = document.getElementById("agentId");
+
+			for (i=0; i<agentArray.length; i++)
+			{		
+				var agent = agentArray[i];
+				var option = document.createElement("option");
+				
+				option.text = agent.agtFirstName + " " + agent.agtLastName;
+				option.value = agent.agentId;
+				agentSelect.add(option);
+			}
+		}
+	};
+	req.open("GET", "/TravelExpertsREST/rs/agent/getallagents", true);
+	req.send();
+}
+
 //home page agent cards
 function getAgents()
 {

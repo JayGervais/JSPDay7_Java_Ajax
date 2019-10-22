@@ -27,7 +27,7 @@ public class Agent implements Serializable {
 	public Agent() {
 	}
 	
-	public Agent(int agentId, int agencyId, String agtBusPhone, String agtEmail, String agtFirstName,
+	public Agent(Integer agentId, Integer agencyId, String agtBusPhone, String agtEmail, String agtFirstName,
 			String agtLastName, String agtMiddleInitial, String agtPosition) {
 		super();
 		this.agentId = agentId;
@@ -45,7 +45,7 @@ public class Agent implements Serializable {
 		return this.agentId;
 	}
 
-	public void setAgentId(int agentId) {
+	public void setAgentId(Integer agentId) {
 		this.agentId = agentId;
 	}
 
@@ -54,7 +54,7 @@ public class Agent implements Serializable {
 		return this.agencyId;
 	}
 
-	public void setAgencyId(int agencyId) {
+	public void setAgencyId(Integer agencyId) {
 		this.agencyId = agencyId;
 	}
 

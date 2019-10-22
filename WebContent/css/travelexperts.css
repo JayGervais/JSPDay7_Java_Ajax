@@ -105,3 +105,9 @@ h1#pagetitle {
 .date {
 	opacity: 0.8;
 }
+
+.error {
+	color: #990000;
+	font-weight: bold;
+	opacity: 0.6;
+}

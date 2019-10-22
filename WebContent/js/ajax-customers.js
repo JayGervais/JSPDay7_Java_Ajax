@@ -3,30 +3,167 @@
  * Jay Gervais, October 2019
  */
 
-// insert customer put example not in use
-function insertCustomer(customerform)
+function insertCustomer()
+{	
+	var agentIdString = document.getElementById("agentId").value;
+	var agentId = parseInt(agentIdString);
+	var custAddress = document.getElementById("custAddress").value;
+	var custBusPhone = document.getElementById("custBusPhone").value;
+	var custCity = document.getElementById("custCity").value;
+	var custCountry = document.getElementById("custCountry").value;
+	var custEmail = document.getElementById("custEmail").value;
+	var custFirstName = document.getElementById("custFirstName").value;
+	var custHomePhone = document.getElementById("custHomePhone").value;
+	var custLastName = document.getElementById("custLastName").value;
+	var custPostal = document.getElementById("custPostal").value;
+	var custProv = document.getElementById("custProv").value;
+	
+	var data = '{ "agentId":'+ agentId
+	+', "custAddress":"' + custAddress
+	+'", "custBusPhone":"'+ custBusPhone 
+	+'", "custCity":"'+ custCity
+	+'", "custCountry":"'+ custCountry
+	+'", "custEmail":"'+ custEmail
+	+'", "custFirstName":"'+ custFirstName
+	+'", "custHomePhone":"'+ custHomePhone
+	+'", "custLastName":"'+ custLastName
+	+'", "custPostal":"'+ custPostal
+	+'", "custProv":"'+ custProv
+	+'" }';	
+	
+	$('#customerform').validate({
+		rules: {
+			"custFirstName": {
+				required: true,
+				lettersonly: true
+			},
+			"custLastName": {
+				required: true,
+				lettersonly: true
+			},
+			"custAddress": {
+				required: true,
+				address: true
+			},
+			"custCity": {
+				required: true,
+				lettersonly: true
+			},
+			"custProv": {
+				required: true
+			},
+			"custCountry": {
+				required: true
+			},
+			"custPostal": {
+				required: true,
+				postalCode: true
+			},
+			"custBusPhone": {
+				required: true,
+				phoneUS: true
+			},
+			"custHomePhone": {
+				required: true,
+				phoneUS: true
+			},
+			"custEmail": {
+				required: true,
+				email: true
+			}
+		},
+		messages: {
+			"custFirstName": {
+				required: "First name required",
+				lettersonly: "A valid name is required"
+			},
+			"custLastName": {
+				required: "Last name required",
+				lettersonly: "A valid name is required"
+			},
+			"custAddress": {
+				required: "Address required",
+				address: "A valid address is required"
+			},
+			"custCity": {
+				required: "City required",
+				lettersonly: "A valid city is required"
+			},
+			"custProv": {
+				required: "Province or state required"
+			},
+			"custCountry": {
+				required: "Province or state required"
+			},
+			"custPostal": {
+				required: "Postal Code required",
+				postalCode: "A valid postal or zip code is required"
+			},
+			"custBusPhone": {
+				required: "Business phone required",
+				phoneUS: "A valid phone number is required"
+			},
+			"custHomePhone": {
+				required: "Home phone required",
+				phoneUS: "A valid phone number is required"
+			},
+			"custEmail": {
+				required: "Email required",
+				email: "A valid email is required"
+			}
+		},
+		submitHandler: function(form) {
+			$.ajax({
+				url:"/TravelExpertsREST/rs/customer/postcustomer/",
+				type:"POST",
+				data:data,
+				cache:false,
+				dataType:"string",
+				contentType:"application/json",
+				success:function(response){ $("#result").html("Customer added"); }
+			});
+			
+			$('#customerform').clear();
+			$("#result").html("Customer added");
+		}
+	});		
+}
+
+function loadprovince(provCountryCode)
 {
-	var data = '{"agentId":"' + customerform.agentId + 
-				'", "custAddress":"' + customerform.custAddress + 
-				'", "custBusPhone":"' + customerform.custBusPhone + 
-				'", "custCity":"' + customerform.custCity + 
-				'", "custCountry":"' + customerform.custCountry + 
-				'", "custEmail":"' + customerform.custEmail + 
-				'", "custFirstName":"' + customerform.custFirstName + 
-				'", "custHomePhone":"' + customerform.custHomePhone + 
-				'", "custLastName":"' + customerform.custLastName + 
-				'", "custPassword":"' + customerform.custPassword + 
-				'", "custPostal":"' + customerform.custPostal + 
-				'", "custProv":"' + customerform.custProv + '"}';
-	$.ajax({
-		url:"/TravelExpertsREST/rs/customer/putcustomer",
-		type:"PUT",
-		data:data,
-		contentType:"application/json",
-		cache:false,
-		dataType:"text",
-		complete:function(req, stat){ $("#result").html(stat); }
-		});	
+	console.log("in loadprovinces");
+	
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function()
+	{
+		if (req.readyState == 4 && req.status == 200)
+		{
+			var regionArray = JSON.parse(req.responseText);
+			var regionSelect = document.getElementById("custProv");
+			clearSelect(regionSelect);
+			console.log("cleared console length=" + regionSelect.length);
+			
+			for (i=0; i<regionArray.length; i++)
+			{		
+				var region = regionArray[i];
+				var option = document.createElement("option");
+				
+				option.text = region.provStateName;
+				option.value = region.provStateName;
+				regionSelect.add(option);
+			}
+		}
+	};
+	req.open("GET", "/TravelExpertsREST/rs/customer/getprovstates/" + provCountryCode);
+	req.send();
+}
+
+function clearSelect(selectObject)
+{
+	for (i = selectObject.options.length -1; i >= 0; i--)
+	{
+		selectObject.remove(i);
+	}
 }
 
 // ---------------------------------------------------------------------------------------------- //
@@ -39,11 +176,9 @@ function customerCard()
 	{
 		if (req.readyState == 4 && req.status == 200)
 		{
-			var customerArray = JSON.parse(req.responseText);
-				
+			var customerArray = JSON.parse(req.responseText);		
 			var customerDetails = document.getElementById("customerdetails");
-			var custTotal = 0;
-			
+			var custTotal = 0;	
 			for (var i=0; i<customerArray.length; i++)
 			{
 				custTotal += 1;

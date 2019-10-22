@@ -8,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -28,6 +29,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import model.Customer;
+import model.ProvState;
 
 
 @Path("/customer")
@@ -36,8 +38,8 @@ public class CustomerRestService
 	private static final Logger logger = Logger.getLogger(CustomerRestService.class);
 	
 	
-	// http://10.187.133.64:9090/TravelExpertsREST/rs/customer/getallcustomers
-	// http://192.168.137.1:9090/TravelExpertsREST/rs/customer/getallcustomers
+	// /TravelExpertsREST/rs/customer/getallcustomers
+	// /TravelExpertsREST/rs/customer/getallcustomers
 	@GET
 	@Path("/getallcustomers")
     @Produces(MediaType.APPLICATION_JSON)
@@ -147,9 +149,29 @@ public class CustomerRestService
         return response;	        
 	}
 	
+	// localhost.com/Day5AJAXExercise/rs/country/getprovstates/{country}
+	@GET
+	@Path("/getprovstates/{country}")
+    @Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.TEXT_PLAIN)
+	public String getProvStates(@PathParam("country") String country) 
+	{
+        // code to JPA object
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExpertsREST");
+        EntityManager em = factory.createEntityManager();
+        //String country;
+        
+        Query query = em.createQuery("select a from ProvState a where a.country='" + country + "'");
+        List<ProvState> list = query.getResultList();
+        
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<ProvState>>() {}.getType();
+        
+        return gson.toJson(list, type);
+	}
 
 	// (localhost) used for updating
-	// http://192.168.44.1:9090/TravelExpertsREST/rs/customer/postcustomer
+	// /TravelExpertsREST/rs/customer/postcustomer
 	@POST
 	@Path("/postcustomer")
     @Produces(MediaType.TEXT_PLAIN)
@@ -215,7 +237,7 @@ public class CustomerRestService
 
 	
 	// (localhost) 
-	// http://192.168.44.1:9090/TravelExpertsREST/rs/customer/putcustomer
+	// /TravelExpertsREST/rs/customer/putcustomer
 	@PUT
 	@Path("/putcustomer")
     @Produces(MediaType.TEXT_PLAIN)
@@ -227,13 +249,17 @@ public class CustomerRestService
         EntityManager em = factory.createEntityManager();
 
         Gson gson = new Gson();
+        
         Type type = new TypeToken<Customer>() {}.getType();   
         Customer c = gson.fromJson(jsonString, type);
 
+//        Type type = new TypeToken<Collection<Customer>>() {}.getType();  
+//        Collection<Customer> c = gson.fromJson(jsonString, type);
+        
         String response;
         
         em.getTransaction().begin();
-        Customer result = em.merge(c);
+        Customer result = (Customer) em.merge(c);
         em.getTransaction().commit();
         
         if (result != null)
@@ -299,4 +325,6 @@ public class CustomerRestService
         
         return "Customer successfully deleted";
 	}
+	
+	
 }

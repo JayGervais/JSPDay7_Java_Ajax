@@ -235,17 +235,6 @@ public class BookingRestService {
         return response;	
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@POST
 	@Path("/<add method name here>")
     @Produces(MediaType.TEXT_PLAIN)

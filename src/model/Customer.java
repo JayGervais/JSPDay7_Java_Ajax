@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -15,9 +17,9 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int customerId;
+	private Integer customerId;
 
-	private int agentId;
+	private Integer agentId;
 
 	private String custAddress;
 
@@ -35,8 +37,6 @@ public class Customer implements Serializable {
 
 	private String custLastName;
 
-	private String custPassword;
-
 	private String custPostal;
 
 	private String custProv;
@@ -44,11 +44,10 @@ public class Customer implements Serializable {
 	public Customer() {
 	}
 	
-	public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity,
+	public Customer(String custFirstName, String custLastName, String custAddress, String custCity,
 			String custProv, String custPostal, String custCountry, String custHomePhone, String custBusPhone,
-			String custEmail, int agentId) {
+			String custEmail, Integer agentId) {
 		super();
-		this.customerId = customerId;
 		this.custFirstName = custFirstName;
 		this.custLastName = custLastName;
 		this.custAddress = custAddress;
@@ -62,19 +61,19 @@ public class Customer implements Serializable {
 		this.agentId = agentId;
 	}
 
-	public int getCustomerId() {
+	public Integer getCustomerId() {
 		return this.customerId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
 
-	public int getAgentId() {
+	public Integer getAgentId() {
 		return this.agentId;
 	}
 
-	public void setAgentId(int agentId) {
+	public void setAgentId(Integer agentId) {
 		this.agentId = agentId;
 	}
 
@@ -140,14 +139,6 @@ public class Customer implements Serializable {
 
 	public void setCustLastName(String custLastName) {
 		this.custLastName = custLastName;
-	}
-
-	public String getCustPassword() {
-		return this.custPassword;
-	}
-
-	public void setCustPassword(String custPassword) {
-		this.custPassword = custPassword;
 	}
 
 	public String getCustPostal() {

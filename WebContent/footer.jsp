@@ -26,6 +26,7 @@
 
   <!-- Website JavaScript -->
   <script src="js/jquery.easing.js"></script>
+  <script src="js/jquery.validate.js"></script>
   <script src="js/scrolling-nav.js"></script>
   <script src="js/travelexperts.js"></script>
   <script src="js/ajax-agency.js"></script>

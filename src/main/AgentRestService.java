@@ -33,8 +33,8 @@ public class AgentRestService {
 
 	private static final Logger logger = Logger.getLogger(AgentRestService.class);
 
-	// http://10.187.133.64:9090/TravelExpertsREST/rs/agent/getallagents
-	// http://192.168.137.1:9090/TravelExpertsREST/rs/agent/getallagents
+	// /TravelExpertsREST/rs/agent/getallagents
+	// /TravelExpertsREST/rs/agent/getallagents
 	@GET
 	@Path("/getallagents")
     @Produces(MediaType.APPLICATION_JSON)

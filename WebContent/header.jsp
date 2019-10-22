@@ -5,7 +5,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="google" content="notranslate">
-<!--  <meta http-equiv="Content-Language" content="en">-->
 <title>Travel Experts</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/scrolling-nav.css">
