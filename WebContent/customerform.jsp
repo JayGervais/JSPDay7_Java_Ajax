@@ -85,5 +85,16 @@
 <script>
 window.onload = function WindowLoad(event) {
 	selectAgentDropdown();
+
+	var url_string = window.location.href;
+    var url = new URL(url_string);
+    var customerId = url.searchParams.get("customerId");
+
+    if (customerId != null)
+    {
+    	customerFormData(customerId);
+    	var btn = document.getElementById("custBtn").innerHTML = "Update Customer";
+    	document.getElementById("custBtn").setAttribute("onclick", "updateCustomer("+ customerId +");");
+    } 
 }
 </script>

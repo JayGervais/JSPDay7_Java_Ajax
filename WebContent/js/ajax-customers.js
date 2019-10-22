@@ -129,6 +129,131 @@ function insertCustomer()
 	});		
 }
 
+function updateCustomer(customerId)
+{	
+	var agentIdString = document.getElementById("agentId").value;
+	var agentId = parseInt(agentIdString);
+	var custAddress = document.getElementById("custAddress").value;
+	var custBusPhone = document.getElementById("custBusPhone").value;
+	var custCity = document.getElementById("custCity").value;
+	var custCountry = document.getElementById("custCountry").value;
+	var custEmail = document.getElementById("custEmail").value;
+	var custFirstName = document.getElementById("custFirstName").value;
+	var custHomePhone = document.getElementById("custHomePhone").value;
+	var custLastName = document.getElementById("custLastName").value;
+	var custPostal = document.getElementById("custPostal").value;
+	var custProv = document.getElementById("custProv").value;
+	
+	var data = '{ "customerId":'+ customerId
+	+', "agentId":'+ agentId
+	+', "custAddress":"' + custAddress
+    +'", "custBusPhone":"'+ custBusPhone 
+    +'", "custCity":"'+ custCity
+    +'", "custCountry":"'+ custCountry
+    +'", "custEmail":"'+ custEmail
+    +'", "custFirstName":"'+ custFirstName
+    +'", "custHomePhone":"'+ custHomePhone
+    +'", "custLastName":"'+ custLastName
+    +'", "custPostal":"'+ custPostal
+    +'", "custProv":"'+ custProv
+    +'" }';
+	
+	$('#customerform').validate({
+		rules: {
+			"custFirstName": {
+				required: true,
+				lettersonly: true
+			},
+			"custLastName": {
+				required: true,
+				lettersonly: true
+			},
+			"custAddress": {
+				required: true,
+				address: true
+			},
+			"custCity": {
+				required: true,
+				lettersonly: true
+			},
+			"custProv": {
+				required: true
+			},
+			"custCountry": {
+				required: true
+			},
+			"custPostal": {
+				required: true,
+				postalCode: true
+			},
+			"custBusPhone": {
+				required: true,
+				phoneUS: true
+			},
+			"custHomePhone": {
+				required: true,
+				phoneUS: true
+			},
+			"custEmail": {
+				required: true,
+				email: true
+			}
+		},
+		messages: {
+			"custFirstName": {
+				required: "First name required",
+				lettersonly: "A valid name is required"
+			},
+			"custLastName": {
+				required: "Last name required",
+				lettersonly: "A valid name is required"
+			},
+			"custAddress": {
+				required: "Address required",
+				address: "A valid address is required"
+			},
+			"custCity": {
+				required: "City required",
+				lettersonly: "A valid city is required"
+			},
+			"custProv": {
+				required: "Province or state required"
+			},
+			"custCountry": {
+				required: "Province or state required"
+			},
+			"custPostal": {
+				required: "Postal Code required",
+				postalCode: "A valid postal or zip code is required"
+			},
+			"custBusPhone": {
+				required: "Business phone required",
+				phoneUS: "A valid phone number is required"
+			},
+			"custHomePhone": {
+				required: "Home phone required",
+				phoneUS: "A valid phone number is required"
+			},
+			"custEmail": {
+				required: "Email required",
+				email: "A valid email is required"
+			}
+		},
+		submitHandler: function(form) {
+			$.ajax({
+				url:"/TravelExpertsREST/rs/customer/putcustomer/",
+				type:"PUT",
+				data:data,
+				cache:false,
+				dataType:"string",
+				contentType:"application/json",
+				success:function(response){ $("#result").html("Customer added"); }
+			});
+			window.location.href = "/TravelExpertsREST/page.jsp?customerId=" + customerId;
+		}
+	});		
+}
+
 function loadprovince(provCountryCode)
 {
 	console.log("in loadprovinces");
@@ -149,7 +274,7 @@ function loadprovince(provCountryCode)
 				var option = document.createElement("option");
 				
 				option.text = region.provStateName;
-				option.value = region.provStateName;
+				option.value = region.provStateCode;
 				regionSelect.add(option);
 			}
 		}
@@ -351,7 +476,45 @@ function getCustomerBookings(customerId)
 }
 
 
-
+function customerFormData(customerId)
+{
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function()
+	{		
+		if (req.readyState == 4 && req.status == 200)
+		{
+			var customer = JSON.parse(req.responseText);
+			
+			document.getElementById("custFirstName").value = customer.custFirstName;	
+			
+			function setSelectValue (id, val) {
+			    document.getElementById(id).value = val;
+			}
+		
+			setSelectValue("agentId", customer.agentId);
+			
+			if (customer.custCountry != "United States") {
+				country = document.getElementById("custCountry").value = "ca";
+			} else {
+				country = document.getElementById("custCountry").value = "us";
+			}
+			
+			loadprovince(country);			
+			setSelectValue("custProv", customer.custProv);
+			document.getElementById("custAddress").value = customer.custAddress;
+			document.getElementById("custBusPhone").value = formatPhoneNumber(customer.custBusPhone);
+			document.getElementById("custCity").value = customer.custCity;
+			document.getElementById("custEmail").value = customer.custEmail;
+			document.getElementById("custFirstName").value = customer.custFirstName;
+			document.getElementById("custHomePhone").value = formatPhoneNumber(customer.custHomePhone);
+			document.getElementById("custLastName").value = customer.custLastName;
+			document.getElementById("custPostal").value = customer.custPostal;
+			document.getElementById("custProv").value = customer.custProv;
+		}
+	};
+	req.open("GET", "/TravelExpertsREST/rs/customer/getcustomer/" + customerId, true);
+	req.send();
+}
 
 
 

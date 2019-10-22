@@ -6,7 +6,6 @@
       <p class="lead"></p>
     </div>
  </header>
-
 <div class="container pt-5 mb-5">
 <button type="button" class="btn btn-light shaded" onclick="goBack()">Go Back</button>
 <script>

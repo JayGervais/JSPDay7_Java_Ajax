@@ -249,20 +249,15 @@ public class CustomerRestService
         EntityManager em = factory.createEntityManager();
 
         Gson gson = new Gson();
-        
         Type type = new TypeToken<Customer>() {}.getType();   
-        Customer c = gson.fromJson(jsonString, type);
-
-//        Type type = new TypeToken<Collection<Customer>>() {}.getType();  
-//        Collection<Customer> c = gson.fromJson(jsonString, type);
-        
-        String response;
-        
+        Customer c = gson.fromJson(jsonString, type);     
         em.getTransaction().begin();
-        Customer result = (Customer) em.merge(c);
+        Customer result = em.merge(c);
+        //em.persist(c);
         em.getTransaction().commit();
         
-        if (result != null)
+        String response;
+		if (result != null)
         {
         	response = "Update successful";
         }
