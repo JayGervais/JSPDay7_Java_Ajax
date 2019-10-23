@@ -274,7 +274,7 @@ public class CustomerRestService
         return response;	
 	}
 
-	// (localhost) http://192.168.44.1:9090/TravelExpertsREST/rs/customer/deletecustomer/{customerid}
+	// /TravelExpertsREST/rs/customer/deletecustomer/{customerid}
 	@DELETE
 	@Path("/deletecustomer/{customerid}")
 	public String deleteCustomer(@PathParam("customerid") int customerId,
@@ -314,11 +314,21 @@ public class CustomerRestService
         
         em.getTransaction().commit();
         
+        String response;
+		if (em.contains(findCustomer))
+        {
+        	response = "Could not delete customer";
+        }
+        else 
+        {
+        	response = "Customer successfully deleted";
+        }
+        
         // close
         em.close();
         factory.close();
         
-        return "Customer successfully deleted";
+        return response;
 	}
 	
 	

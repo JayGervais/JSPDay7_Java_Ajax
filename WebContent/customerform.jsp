@@ -77,7 +77,9 @@
 		</div>
 	</div>
 		<div class="form-group">
+			<hr>
 			<button onclick="insertCustomer()" id="custBtn" class="btn btn-primary">Add Customer</button>
+			<div class="float-right"><button id="btnDelete" class="btn btn-danger">Delete</button></div>
 		</div>
     <p id="result"></p>
 </form>
@@ -85,7 +87,6 @@
 <script>
 window.onload = function WindowLoad(event) {
 	selectAgentDropdown();
-
 	var url_string = window.location.href;
     var url = new URL(url_string);
     var customerId = url.searchParams.get("customerId");
@@ -93,8 +94,10 @@ window.onload = function WindowLoad(event) {
     if (customerId != null)
     {
     	customerFormData(customerId);
-    	var btn = document.getElementById("custBtn").innerHTML = "Update Customer";
+    	document.getElementById("custBtn").innerHTML = "Update Customer";
     	document.getElementById("custBtn").setAttribute("onclick", "updateCustomer("+ customerId +");");
+    	document.getElementById("btnDelete").setAttribute("onclick", "deleteCustomer("+ customerId +");");
+    	document.getElementById("title").innerHTML = "Update Customer";
     } 
 }
 </script>

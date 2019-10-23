@@ -181,7 +181,6 @@ function loadSingleBooking(bookingId)
 			for (i=0; i<bookingArray.length; i++)
 			{	
 				var booking = bookingArray[i];
-	
 				getCustomer(booking.booking.customerId);
 					
 				details.innerHTML = "<table class='table'><tbody>" + 
@@ -227,5 +226,46 @@ function loadSingleBooking(bookingId)
 		}
 	};
 	req.open("GET", "/TravelExpertsREST/rs/booking/getbooking/" + bookingId, true);
+	req.send();
+}
+
+function getCustomerBookings(customerId)
+{
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function()
+	{
+		if (req.readyState == 4 && req.status == 200)
+		{
+			var custBookArray = JSON.parse(req.responseText);			
+			var card = document.getElementById("card-body");			
+			var custListCard = document.createElement("card-footer");
+			card.appendChild(custListCard);
+
+			for (i=0; i<custBookArray.length; i++)
+			{	
+				var custBookings = custBookArray[i];
+				
+				var list = document.createElement("li");
+				list.setAttribute("class", "list-group-item");
+				custListCard.appendChild(list);
+				
+				list.innerHTML = "<div class='row'>" + 
+								 "<div class='col-md-5'>" +
+								 "<div id='" + customerId + "'></div><strong>" +
+								 custBookings.bookingDate.split(' ').slice(0, 3).join(' ').replace(/,\s*$/, "") + "</strong><br />" +
+								 "<div id='" + custBookings.bookingId + "'></div>" +
+								 "</div>" +
+								 "<div class='col-md-5'>" + 	 
+
+								 "</div>" +
+								 "<div class='col-md-2'>" + 
+								 "<div class='float-right'><a href='/TravelExpertsREST/page.jsp?bookingId=" + custBookings.bookingId + "' " +
+							 		"+ id='book-url'>View Details ></a></div>" +
+							 	 "</div></div>";
+				loadBookingDetails(custBookings.bookingId);
+			}
+		}
+	};
+	req.open("GET", "/TravelExpertsREST/rs/booking/getcustomerbooking/" + customerId, true);
 	req.send();
 }

@@ -291,6 +291,22 @@ function clearSelect(selectObject)
 	}
 }
 
+function deleteCustomer(customerId)
+{
+	if (confirm("Are you sure you want to delete this customer?"))
+	{
+		$.ajax({
+			url:"/TravelExpertsREST/rs/customer/deletecustomer/" + customerId,
+			type:"DELETE",
+			success:function(result) { 
+				$("#result").html("Customer successfully deleted"); 
+				window.location.href = "/TravelExpertsREST/page.jsp?customerId=1";
+			}
+		});
+	}
+	return false;
+}
+
 // ---------------------------------------------------------------------------------------------- //
 	// Customer GET
 // ---------------------------------------------------------------------------------------------- //
@@ -324,8 +340,8 @@ function getCustomerName(customerId)
 		{
 			var customer = JSON.parse(req.responseText);
 			var custdiv = document.getElementById(customerId);
-			custdiv.innerHTML = customer.custFirstName + " " + customer.custLastName + ", " +
-								customer.custCity + " " + customer.custProv;
+			custdiv.innerHTML = "<strong>" + customer.custFirstName + " " + customer.custLastName + ", " +
+								customer.custCity + " " + customer.custProv + "</strong>";
 		}
 	};
 	req.open("GET", "/TravelExpertsREST/rs/customer/getcustomer/" + customerId, true);
@@ -364,22 +380,45 @@ function loadCustomerDetails(customerId)
 			var customer = JSON.parse(req.responseText);
 			
 			pagetitle.innerHTML = "Customer Details";
-			title.innerHTML = customer.custFirstName + " " + customer.custLastName; 
+			title.innerHTML = customer.custFirstName + " " + customer.custLastName +
+							  "<div class='float-right'><a href='/TravelExpertsREST/addcustomer.jsp?customerId=" + customer.customerId + "' " +
+							  "+ id='book-url'>Update Customer ></a></div>"; 
+		
+			var card = document.createElement("div");
+			card.setAttribute("class", "card");
+			cardbody.appendChild(card);
+			
+			var cardholder = document.createElement("div");
+			cardholder.setAttribute("class", "card-body");
+			card.appendChild(cardholder);
+			
+			var row = document.createElement("div");
+			row.setAttribute("class", "row");
+			cardholder.appendChild(row);
+			
+			var col = document.createElement("div");
+			col.setAttribute("class", "col-md-6");
+			row.appendChild(col);
+			
+			var col2 = document.createElement("div");
+			col2.setAttribute("class", "col-md-6");
+			row.appendChild(col2);
 			
 			var address = document.createElement("p");
 			address.setAttribute("class", "cust-descript");
-			cardbody.appendChild(address);
+			col.appendChild(address);
 			address.innerHTML = "<strong>Address:</strong><br />" + customer.custAddress + "<br />" +
 							  customer.custCity + ", " + customer.custCountry + " " + customer.custPostal;
 			
 			var contact = document.createElement("p");
 			contact.setAttribute("class", "cust-descript");
-			cardbody.appendChild(contact);
+			col2.appendChild(contact);
 			contact.innerHTML = "<strong>Contact:</strong><br />Business Phone: " + 
 								formatPhoneNumber(customer.custBusPhone) + "<br />" 
 								+ "Home Phone: " + formatPhoneNumber(customer.custHomePhone) + 
 							  	"<br />Email: " + customer.custEmail;
-			getCustomerBookings(customerId);
+			
+			custBookings = getCustomerBookings(customerId);
 		}
 	};
 	req.open("GET", "/TravelExpertsREST/rs/customer/getcustomer/" + customerId, true);
@@ -408,6 +447,15 @@ function loadCustomerList()
 				list.setAttribute("class", "list-group-item");
 				cardbody.appendChild(list);
 				
+				if (customer.custEmail.trim() != "")
+				{
+					customerEmail = "Email: " + customer.custEmail;
+				}
+				else
+				{
+					customerEmail = "";
+				}
+				
 				list.innerHTML = "<div class='row'>" + 
 								 "<div class='col-md-5'>" +
 								 "<div id='" + customer.customerId + "'></div><strong>" +
@@ -418,8 +466,8 @@ function loadCustomerList()
 								 "<div class='col-md-5'><strong>" + 	 
 								 "Contact</strong><br />Home Phone: " +
 								 formatPhoneNumber(customer.custHomePhone) + "<br />Business Phone: " +
-								 formatPhoneNumber(customer.custBusPhone) + "<br />Email: " +
-								 customer.custEmail +
+								 formatPhoneNumber(customer.custBusPhone) + "<br />" +
+								 customerEmail +
 								 "</div>" +
 								 "<div class='col-md-2'>" + 
 								 "<div class='float-right'><a href='/TravelExpertsREST/page.jsp?customerId=" + customer.customerId + "' " +
@@ -432,50 +480,6 @@ function loadCustomerList()
 	req.send();
 }
 
-function getCustomerBookings(customerId)
-{
-	var req = new XMLHttpRequest();
-	req.onreadystatechange = function()
-	{
-		if (req.readyState == 4 && req.status == 200)
-		{
-			var custBookArray = JSON.parse(req.responseText);
-			
-			var card = document.getElementById("card-body");
-			
-			var custListCard = document.createElement("card-footer");
-			card.appendChild(custListCard);
-
-			for (i=0; i<custBookArray.length; i++)
-			{	
-				var custBookings = custBookArray[i];
-				
-				var list = document.createElement("li");
-				list.setAttribute("class", "list-group-item");
-				custListCard.appendChild(list);
-				
-				list.innerHTML = "<div class='row'>" + 
-								 "<div class='col-md-5'>" +
-								 "<div id='" + customerId + "'></div><strong>" +
-								 custBookings.bookingDate.split(' ').slice(0, 3).join(' ').replace(/,\s*$/, "") + "</strong><br />" +
-								 "<div id='" + custBookings.bookingId + "'></div>" +
-								 "</div>" +
-								 "<div class='col-md-5'>" + 	 
-
-								 "</div>" +
-								 "<div class='col-md-2'>" + 
-								 "<div class='float-right'><a href='/TravelExpertsREST/page.jsp?bookingId=" + custBookings.bookingId + "' " +
-							 		"+ id='book-url'>View Details ></a></div>" +
-							 	 "</div></div>";
-				loadBookingDetails(custBookings.bookingId);
-			}
-		}
-	};
-	req.open("GET", "/TravelExpertsREST/rs/booking/getcustomerbooking/" + customerId, true);
-	req.send();
-}
-
-
 function customerFormData(customerId)
 {
 	var req = new XMLHttpRequest();
@@ -486,6 +490,7 @@ function customerFormData(customerId)
 			var customer = JSON.parse(req.responseText);
 			
 			document.getElementById("custFirstName").value = customer.custFirstName;	
+			document.getElementById("pagetitle").innerHTML = "Update Customer";
 			
 			function setSelectValue (id, val) {
 			    document.getElementById(id).value = val;
@@ -504,7 +509,7 @@ function customerFormData(customerId)
 			document.getElementById("custAddress").value = customer.custAddress;
 			document.getElementById("custBusPhone").value = formatPhoneNumber(customer.custBusPhone);
 			document.getElementById("custCity").value = customer.custCity;
-			document.getElementById("custEmail").value = customer.custEmail;
+			document.getElementById("custEmail").value = customer.custEmail.trim();
 			document.getElementById("custFirstName").value = customer.custFirstName;
 			document.getElementById("custHomePhone").value = formatPhoneNumber(customer.custHomePhone);
 			document.getElementById("custLastName").value = customer.custLastName;
@@ -515,8 +520,3 @@ function customerFormData(customerId)
 	req.open("GET", "/TravelExpertsREST/rs/customer/getcustomer/" + customerId, true);
 	req.send();
 }
-
-
-
-
-

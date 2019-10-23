@@ -83,7 +83,6 @@ public class BookingRestService {
         return response;	
 	}
 	
-	
 	@GET
 	@Path("/getbookingdetails")
     @Produces(MediaType.APPLICATION_JSON)
@@ -233,101 +232,5 @@ public class BookingRestService {
         em.close();
         factory.close();
         return response;	
-	}
-	
-	@POST
-	@Path("/<add method name here>")
-    @Produces(MediaType.TEXT_PLAIN)
-	public String postSomething(@FormParam("request") String request ,  @DefaultValue("1") @FormParam("version") int version) {
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("Start postSomething");
-			logger.debug("data: '" + request + "'");
-			logger.debug("version: '" + version + "'");
-		}
-
-		String response = null;
-
-        try{			
-            switch(version){
-	            case 1:
-	                if(logger.isDebugEnabled()) logger.debug("in version 1");
-
-	                response = "Response from RESTEasy Restful Webservice : " + request;
-                    break;
-                default: throw new Exception("Unsupported version: " + version);
-            }
-        }
-        catch(Exception e){
-        	response = e.getMessage().toString();
-        }
-        
-        if(logger.isDebugEnabled()){
-            logger.debug("result: '"+response+"'");
-            logger.debug("End postSomething");
-        }
-        return response;	
-	}
-
-	@PUT
-	@Path("/<add method name here>")
-    @Produces(MediaType.TEXT_PLAIN)
-	public String putSomething(@FormParam("request") String request ,  @DefaultValue("1") @FormParam("version") int version) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("Start putSomething");
-			logger.debug("data: '" + request + "'");
-			logger.debug("version: '" + version + "'");
-		}
-
-		String response = null;
-
-        try{			
-            switch(version){
-	            case 1:
-	                if(logger.isDebugEnabled()) logger.debug("in version 1");
-
-	                response = "Response from RESTEasy Restful Webservice : " + request;
-                    break;
-                default: throw new Exception("Unsupported version: " + version);
-            }
-        }
-        catch(Exception e){
-        	response = e.getMessage().toString();
-        }
-        
-        if(logger.isDebugEnabled()){
-            logger.debug("result: '"+response+"'");
-            logger.debug("End putSomething");
-        }
-        return response;	
-	}
-
-	@DELETE
-	@Path("/<add method name here>")
-	public void deleteSomething(@FormParam("request") String request ,  @DefaultValue("1") @FormParam("version") int version) {
-		
-		if (logger.isDebugEnabled()) {
-			logger.debug("Start deleteSomething");
-			logger.debug("data: '" + request + "'");
-			logger.debug("version: '" + version + "'");
-		}
-
-
-        try{			
-            switch(version){
-	            case 1:
-	                if(logger.isDebugEnabled()) logger.debug("in version 1");
-
-                    break;
-                default: throw new Exception("Unsupported version: " + version);
-            }
-        }
-        catch(Exception e){
-        	e.printStackTrace();
-        }
-        
-        if(logger.isDebugEnabled()){
-            logger.debug("End deleteSomething");
-        }
 	}
 }
