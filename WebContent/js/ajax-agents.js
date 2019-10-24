@@ -63,11 +63,19 @@ function getAgents()
 				cardbody.setAttribute("class", "card-body");
 				card.appendChild(cardbody);
 				
+				if (agent.agtMiddleInitial != null)
+				{
+					agtMiddleInitial = agent.agtMiddleInitial + " ";
+				}
+				else {
+					agtMiddleInitial = "";
+				}
+				
 				var cardtitle = document.createElement("h5");
 				cardtitle.setAttribute("class", "card-title");
 				cardbody.appendChild(cardtitle);
 				cardtitle.innerHTML = agent.agtFirstName + " " + 
-									  agent.agtMiddleInitial + " " + 
+									  agtMiddleInitial + " " + 
 									  agent.agtLastName;
 				
 				var cardcontact = document.createElement("p");
@@ -105,8 +113,16 @@ function loadSingleAgent(agentId)
 			
 			pagetitle.innerHTML = "Agent Information";
 			
+			if (agent.agtMiddleInitial != null)
+			{
+				agtMiddleInitial = agent.agtMiddleInitial + " ";
+			}
+			else {
+				agtMiddleInitial = "";
+			}
+			
 			title.innerHTML = agent.agtFirstName + " " + 
-			  				  agent.agtMiddleInitial + " " + 
+							  agtMiddleInitial + 
 			  				  agent.agtLastName;
 			
 			details.innerHTML = "Position: " + agent.agtPosition + "<br />" + 
