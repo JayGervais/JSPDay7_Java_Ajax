@@ -1,5 +1,11 @@
 <jsp:include page="header.jsp" />
-
+<%
+//allow access only if session exists
+if(session.getAttribute("admin") == null)
+{
+	response.sendRedirect("login.html");
+}
+%>
 <header class="bg-primary text-white bg-img-sm">
     <div class="container text-center">
       <h1 class="t-shadow"></h1>

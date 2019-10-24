@@ -48,6 +48,11 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/TravelExpertsREST/#contact">About</a>
           </li>
+          <li class="nav-item logout">
+            <form action="LogoutServlet" method="post">
+				<input type="submit" value="Logout" class="btn btn-dark">
+			</form>
+          </li>
         </ul>
       </div>
     </div>

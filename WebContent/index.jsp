@@ -1,6 +1,12 @@
 <!-- jsp header -->
 <jsp:include page="header.jsp" />
-
+<%
+//allow access only if session exists
+if(session.getAttribute("admin") == null)
+{
+	response.sendRedirect("login.html");
+}
+%>
 <script>
 	window.onload = function WindowLoad(event) {
 		getAgents();

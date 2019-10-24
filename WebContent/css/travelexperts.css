@@ -3,6 +3,24 @@
 /* Fonts */
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 
+ul.navbar-nav.ml-auto {
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+
+.btn.btn-dark {
+	margin-top: -5px;
+	border: 1px solid #fff;
+}
+
+@media (max-width: 992px) {
+	.btn.btn-dark {
+		margin-top: 0px;
+		float: right;
+		border: 1px solid #fff;
+	}
+}
+
 header.bg-primary.text-white.bg-img {
 	background-image: url("../images/beach_above.jpg");
   	background-attachment: fixed;

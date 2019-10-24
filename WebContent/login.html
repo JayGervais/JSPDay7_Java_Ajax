@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<title>Travel Experts</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+
+  <title>Travel Experts Login</title>
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/travelexperts.css" rel="stylesheet">
+  <script src="js/jquery.js"></script>
+</head>
+<body>
+	<div class="container login-form">
+		<div id="form-content">
+		<h1 class="form-title">Travel Experts</h1>
+			<hr class="title">
+			
+		<form method="post" action="Login">
+		<div id="errMsg"></div>
+			<div class="form-group">
+		       	<label>Email</label>
+		       	<input class="form-control" type="text" name="email" />
+		       </div>
+		       <div class="form-group">
+		       	<label>Password</label>
+		       	<input class="form-control" type="password" name="pass" />
+		       </div>
+		       <div class="form-group">
+		       	<input class="btn btn-primary" type="submit" value="login" />
+		   	</div>
+		 </form>
+		</div>
+	</div>
+<script>
+window.onload = function WindowLoad(event) {
+	var error = document.getElementById("error");
+	var errMsg = document.getElementById("errMsg");
+	errMsg.appendChild(error);
+}
+</script>
+</body>
+</html>

@@ -7,6 +7,7 @@
 		<class>model.Booking</class>
 		<class>model.Agency</class>
 		<class>model.ProvState</class>
+		<class>model.Admin</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/travelexperts"/>
