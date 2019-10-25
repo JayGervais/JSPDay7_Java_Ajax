@@ -410,13 +410,20 @@ function loadCustomerDetails(customerId)
 			address.innerHTML = "<strong>Address:</strong><br />" + customer.custAddress + "<br />" +
 							  customer.custCity + ", " + customer.custCountry + " " + customer.custPostal;
 			
+			if (customer.custEmail.trim() == "")
+			{
+				email = "";
+			} else {
+				email = "<br /><i class='fas fa-envelope'></i> " + customer.custEmail;
+			}
+			
 			var contact = document.createElement("p");
 			contact.setAttribute("class", "cust-descript");
 			col2.appendChild(contact);
-			contact.innerHTML = "<strong>Contact:</strong><br />Business Phone: " + 
+			contact.innerHTML = "<strong>Contact:</strong><br /><i class='fas fa-phone'></i> Business: " + 
 								formatPhoneNumber(customer.custBusPhone) + "<br />" 
-								+ "Home Phone: " + formatPhoneNumber(customer.custHomePhone) + 
-							  	"<br />Email: " + customer.custEmail;
+								+ "<i class='fas fa-phone'></i> Home: " + formatPhoneNumber(customer.custHomePhone) + 
+							  	email;
 			
 			custBookings = getCustomerBookings(customerId);
 		}
@@ -449,7 +456,7 @@ function loadCustomerList()
 				
 				if (customer.custEmail.trim() != "")
 				{
-					customerEmail = "Email: " + customer.custEmail;
+					customerEmail = "<i class='fas fa-envelope'></i> " + customer.custEmail;
 				}
 				else
 				{
@@ -464,8 +471,8 @@ function loadCustomerList()
 							     customer.custCity + ", " + customer.custProv + " " + customer.custPostal +
 								 "</div>" +
 								 "<div class='col-md-5'><strong>" + 	 
-								 "Contact</strong><br />Home Phone: " +
-								 formatPhoneNumber(customer.custHomePhone) + "<br />Business Phone: " +
+								 "Contact</strong><br /><i class='fas fa-phone'></i> Home: " +
+								 formatPhoneNumber(customer.custHomePhone) + "<br /><i class='fas fa-phone'></i> Business: " +
 								 formatPhoneNumber(customer.custBusPhone) + "<br />" +
 								 customerEmail +
 								 "</div>" +

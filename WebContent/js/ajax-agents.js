@@ -82,8 +82,8 @@ function getAgents()
 				cardcontact.setAttribute("class", "card-text");
 				cardbody.appendChild(cardcontact);
 				cardcontact.innerHTML = "Position: " + agent.agtPosition + "<br />" + 
-										"Phone: " + formatPhoneNumber(agent.agtBusPhone) + "<br />" + 
-										"Email: " + agent.agtEmail;
+										"<i class='fas fa-phone'></i> " + formatPhoneNumber(agent.agtBusPhone) + "<br />" + 
+										"<i class='fas fa-envelope'></i> " + agent.agtEmail;
 				
 				var agtbutton = document.createElement("a");
 				agtbutton.setAttribute("class", "btn btn-primary text-white");
@@ -126,8 +126,8 @@ function loadSingleAgent(agentId)
 			  				  agent.agtLastName;
 			
 			details.innerHTML = "Position: " + agent.agtPosition + "<br />" + 
-								"Phone: " + formatPhoneNumber(agent.agtBusPhone) + "<br />" + 
-								"Email: " + agent.agtEmail;
+								"<i class='fas fa-phone'></i> " + formatPhoneNumber(agent.agtBusPhone) + "<br />" + 
+								"<i class='fas fa-envelope'></i> " + agent.agtEmail;
 			
 			getAgency(agent.agencyId);
 		}

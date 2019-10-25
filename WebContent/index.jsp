@@ -82,8 +82,15 @@ if(session.getAttribute("admin") == null)
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>About</h2>
-          <p class="lead">Travel Experts Software Service created by Jay, Tea, Cailan, and Harpreet for SAIT's OOSD program.</p>
+          <h2>SAIT Object Oriented Software Development (OOSD) Threaded Final Project, Spring 2019</h2>
+          <h3>By Jay Gervais, Cailan Lay, Tea Tammiste, and Harpreet Kalsi</h3>
+          <p class="lead">Android App Development</p>
+          <p>Jay and Tea worked together to create the Travel Experts Android app. The development included a custom-built API service to retrieve and send data from the Travel Experts database.</p>
+          <p class="lead">Desktop Application</p>
+          <p>Cailan drove the development of the Travel Experts desktop application with the support of Harpreet. Using JavaFX, they put together an elegant way to help Travel Experts employees keep track of their data.</p>
+          <p class="lead">Web Application RESTservice</p>
+          <p>Jay created the RESTful API and web application to provide an interface accessible from any web browser. The REST service provides access to the database from any application, app, or web browser.</p>
+          
         </div>
       </div>
     </div>

@@ -8,20 +8,12 @@
 <title>Travel Experts</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/scrolling-nav.css">
+<link rel="stylesheet" type="text/css" href="css/travelexperts.css" rel="stylesheet">  
+<script src="https://kit.fontawesome.com/900aac187b.js" crossorigin="anonymous"></script>
+<script src="js/jquery.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-
-  <title>Travel Experts</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/scrolling-nav.css" rel="stylesheet">
-  <link href="css/travelexperts.css" rel="stylesheet">
-  
-  <script src="js/jquery.js"></script>
 
 </head>
 
